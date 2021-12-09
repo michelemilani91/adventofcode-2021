@@ -26,7 +26,7 @@ const parseCommand = (command: string) => {
     return Command.decode({ action, value: Number.parseInt(value) });
 };
 
-function executeCommands(a: readonly Command[]) {
+const executeCommands = (a: readonly Command[]) => {
     return a.reduce<Position>((position, command) => {
         switch (command.action) {
             case "forward":
@@ -63,7 +63,7 @@ interface Position3D {
     aim: number;
 }
 
-function execute3DCommands(a: readonly Command[]) {
+const execute3DCommands = (a: readonly Command[]) => {
     return a.reduce<Position3D>((position, command) => {
         switch (command.action) {
             case "forward":
