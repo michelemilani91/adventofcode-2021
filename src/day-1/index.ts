@@ -3,14 +3,14 @@ import * as TE from "fp-ts/TaskEither";
 import * as E from "fp-ts/Either";
 import { readFile } from "@app/utils/file";
 
-function countIncreases(a: number[]) {
+function countIncreases(a: ReadonlyArray<number>) {
     return a.filter((value, index, array) => index - 1 >= 0 && value > array[index - 1]).length;
 }
 
 export const partOne = flow(
     readFile,
-    TE.map((a: string) => a.split("\n")),
-    TE.map((a: string[]) => a.map((value) => Number.parseInt(value))),
+    TE.map((a: Readonly<string>) => a.split("\n")),
+    TE.map((a: ReadonlyArray<string>) => a.map((value) => Number.parseInt(value))),
     TE.map(countIncreases)
 );
 
@@ -20,9 +20,9 @@ partOne('src/day-1/input.txt')()
 
 export const partTwo = flow(
     readFile,
-    TE.map((a: string) => a.split("\n")),
-    TE.map((a: string[]) => a.map((value) => Number.parseInt(value))),
-    TE.map((a: number[]) => a.map((value, index, array) => value + array[index-1] + array[index-2]).slice(2)),
+    TE.map((a: Readonly<string>) => a.split("\n")),
+    TE.map((a: ReadonlyArray<string>) => a.map((value) => Number.parseInt(value))),
+    TE.map((a: ReadonlyArray<number>) => a.map((value, index, array) => value + array[index-1] + array[index-2]).slice(2)),
     TE.map(countIncreases)
 );
 

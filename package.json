@@ -5,7 +5,8 @@
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
-    "day-1": "node -r ./scripts/ts-node src/day-1/index.ts"
+    "day-1": "node -r ./scripts/ts-node src/day-1/index.ts",
+    "day-2": "node -r ./scripts/ts-node src/day-2/index.ts"
   },
   "dependencies": {
     "fp-ts": "^2.9.1",
