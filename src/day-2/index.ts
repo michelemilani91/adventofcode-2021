@@ -54,5 +54,42 @@ export const partOne = flow(
 
 
 partOne('src/day-2/input.txt')()
-    .then(a => E.isRight(a) ? console.log('What do you get if you multiply your final horizontal position by your final depth? ', a.right) : console.log('Error: ', a.left))
+    .then(a => E.isRight(a) ? console.log('Part one: What do you get if you multiply your final horizontal position by your final depth? ', a.right) : console.log('Error: ', a.left))
+    .catch(a => console.log('Error: ', a));
+
+interface Position3D {
+    horizontal: number;
+    depth: number;
+    aim: number;
+}
+
+function execute3DCommands(a: readonly Command[]) {
+    return a.reduce<Position3D>((position, command) => {
+        switch (command.action) {
+            case "forward":
+                position.horizontal += command.value;
+                position.depth += command.value * position.aim;
+                break;
+            case "down":
+                position.aim += command.value;
+                break;
+            case "up":
+                position.aim -= command.value;
+                break;
+        }
+        return position;
+    }, {horizontal: 0, depth: 0, aim: 0});
+}
+
+export const partTwo = flow(
+    readFile,
+    TE.map((a: Readonly<string>) => a.split("\n")),
+    TE.map(A.map(parseCommand)),
+    TE.chainEitherKW(E.sequenceArray),
+    TE.map(execute3DCommands),
+    TE.map((a: Position) => a.depth * a.horizontal),
+);
+
+partTwo('src/day-2/input.txt')()
+    .then(a => E.isRight(a) ? console.log('Part two: What do you get if you multiply your final horizontal position by your final depth? ', a.right) : console.log('Error: ', a.left))
     .catch(a => console.log('Error: ', a));

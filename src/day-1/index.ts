@@ -15,7 +15,7 @@ export const partOne = flow(
 );
 
 partOne('src/day-1/input.txt')()
-    .then(a => E.isRight(a) ? console.log('How many measurements are larger than the previous measurement? ', a.right) : console.log('Error: ', a.left))
+    .then(a => E.isRight(a) ? console.log('Part one: How many measurements are larger than the previous measurement? ', a.right) : console.log('Error: ', a.left))
     .catch(a => console.log('Error: ', a));
 
 export const partTwo = flow(
@@ -27,5 +27,5 @@ export const partTwo = flow(
 );
 
 partTwo('src/day-1/input.txt')()
-    .then(a => E.isRight(a) ? console.log('How many sums are larger than the previous sum? ', a.right) : console.log('Error: ', a.left))
+    .then(a => E.isRight(a) ? console.log('Part two: How many sums are larger than the previous sum? ', a.right) : console.log('Error: ', a.left))
     .catch(a => console.log('Error: ', a));
